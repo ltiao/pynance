@@ -1,0 +1,11 @@
+scratch/*
+scripts/*
+examples/*
+external/hyperopt/*
+datasets/*
+results/*
+
+**/.git
+
+# Sphinx documentation
+docs/_build/*
