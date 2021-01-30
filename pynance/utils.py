@@ -1,4 +1,4 @@
-import requests
+import requests, requests_cache
 from datetime import datetime
 
 
@@ -14,11 +14,13 @@ def create_datetime(timestamp_ms):
     return datetime.fromtimestamp(to_seconds(timestamp_ms))
 
 
-def create_session(api_key):
+def create_session(api_key, expire_after=None, location="foo/"):
 
     headers = {"X-MBX-APIKEY": api_key}
 
-    session = requests.Session()
+    session = requests_cache.CachedSession(backend="sqlite",
+                                           include_get_headers=False)
+    # session = requests.Session()
     session.headers.update(headers)
 
     return session
